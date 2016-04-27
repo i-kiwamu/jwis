@@ -2,7 +2,6 @@ jwis: Data downloader from Japan Water Information System
 =========================================================
 
 * Author: Kiwamu Ishikura
-* Version: 0.1.0
 * Licence: GPLv3
 
 What's this?
