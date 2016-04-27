@@ -4,6 +4,8 @@ jwis: Data downloader from Japan Water Information System
 * Author: Kiwamu Ishikura
 * Licence: GPLv3
 
+[![PyPI version](https://badge.fury.io/py/jwis.svg)](https://badge.fury.io/py/jwis)
+
 What's this?
 ------------
 This is a program to get hydrological data from Water Information System provided from Japanese Ministry of Land, Infrastructure, Transport and Tourism (http://www1.river.go.jp/). You can retrieve data and save as csv.
