@@ -12,7 +12,8 @@ This is a program to get hydrological data from Water Information System provide
 
 Requirement
 -----------
-Python (>= 3.3)
+* Python (>= 3.3)
+* pandas (>= 0.18.0)
 *Beware that Python 2 can NOT work*
 
 Installation
@@ -23,7 +24,7 @@ If you have pip, you can install by pip as follows::
 $ pip install jwis
 ```
 
-Or, you can install by setup.py::
+Or, you can install by setup.py
 
 ```
 $ python3 setup.py install
@@ -31,7 +32,8 @@ $ python3 setup.py install
 
 Usage
 -----
-Just type as follows in your console::
+Just type as follows in your console
+
 ```
 $ jwis
 ```
