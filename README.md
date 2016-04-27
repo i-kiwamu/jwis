@@ -8,17 +8,18 @@ jwis: Data downloader from Japan Water Information System
 
 What's this?
 ------------
-This is a program to get hydrological data from Water Information System provided from Japanese Ministry of Land, Infrastructure, Transport and Tourism (http://www1.river.go.jp/). You can retrieve data and save as csv.
+This is a program to get hydrological data from [Water Information System](http://www1.river.go.jp/) provided from Japanese Ministry of Land, Infrastructure, Transport and Tourism. You can retrieve data and, save as csv. *Only water level and flow rate data are available*, because this program is still in beta version.
 
-Requirement
------------
+Requirements
+------------
 * Python (>= 3.3)
 * pandas (>= 0.18.0)
+
 *Beware that Python 2 can NOT work*
 
 Installation
 ------------
-If you have pip, you can install by pip as follows::
+If you have pip, you can install by pip as below
 
 ```
 $ pip install jwis
@@ -32,10 +33,10 @@ $ python3 setup.py install
 
 Usage
 -----
-Just type as follows in your console
+Just type as below in your console
 
 ```
 $ jwis
 ```
 
-Program will ask you the beginning/final date of data you want, observatory ID, and file name. Please follow the explanations.
+Program will ask you the beginning and final date you want, observatory ID (観測所記号), and file name. Please follow the explanations.
