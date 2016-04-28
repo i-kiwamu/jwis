@@ -5,8 +5,12 @@
 #   HTML Parser for Japan Water Information System
 # ------------------------------------------------
 
-from urllib.parse import parse_qs
-from html.parser import HTMLParser
+try:
+    from urllib.parse import parse_qs
+    from html.parser import HTMLParser
+except ImportError:
+    from urlparse import parse_qs
+    from HTMLParser import HTMLParser
 
 class JWISParser(HTMLParser):
     def __init__(self):

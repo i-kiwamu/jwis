@@ -5,8 +5,11 @@
 #   read & write data from Japan Water Information System
 # ------------------------------------------------
 
-import urllib.request
-import urllib.parse
+try:
+    from urllib.request import urlopen
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib import urlopen, urlencode
 import datetime
 import pandas as pd
 from .JWISHTMLParser import JWISParser
@@ -44,20 +47,21 @@ class JWIS:
             d1 = d + date_delta
             url_params_dict["BGNDATE"] = d.strftime("%Y%m%d")
             url_params_dict["ENDDATE"] = d1.strftime("%Y%m%d")
-            url_params = urllib.parse.urlencode(url_params_dict)
+            url_params = urlencode(url_params_dict)
             view_uri = self.view_url + '?' + url_params
-            f = urllib.request.urlopen(view_uri)
+            f = urlopen(view_uri)
 
             parser = JWISParser()
             parser.feed(f.read().decode("euc-jp"))
             parser.close()
 
             data_list = []
-            with urllib.request.urlopen(parser.data_url) as data_file:
-                for line in data_file:
-                    line = line.decode("Shift_JIS")
-                    if line.count(',') == 3 and not line.startswith('#'):
-                        data_list.append(line.rstrip("\r\n").split(','))
+            # with urlopen(parser.data_url) as data_file:
+            data_file = urlopen(parser.data_url)
+            for line in data_file:
+                line = line.decode("Shift_JIS")
+                if line.count(',') == 3 and not line.startswith('#'):
+                    data_list.append(line.rstrip("\r\n").split(','))
 
             data = data.append(pd.DataFrame(data_list, columns=columns))
             d = d1 + datetime.timedelta(days=1)

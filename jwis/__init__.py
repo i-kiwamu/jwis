@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from datetime import date, timedelta
@@ -8,6 +8,11 @@ import codecs
 from .jwislib import JWIS
 
 sys_encoding = sys.stdout.encoding
+
+try:
+   input = raw_input
+except NameError:
+   pass
 
 def ask_date():
     print("Beginning date")

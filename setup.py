@@ -19,7 +19,7 @@ else:
 setup(
     name = "jwis",
     packages = ["jwis"],
-    version = "0.1.1",
+    version = "0.2.0",
     description = "Data downloader from Japan Water System Information",
     author = "Kiwamu Ishikura",
     author_email = "ishikura.kiwamu@gmail.com",
@@ -27,6 +27,7 @@ setup(
     keywords = ["download", "hydrology", "japan"],
     classifiers = [
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
@@ -41,33 +42,42 @@ setup(
         "Topic :: Utilities",
         ],
     long_description = """\
+=========================================================
 jwis: Data downloader from Japan Water Information System
 =========================================================
 
-* Author: Kiwamu Ishikura
-* Version: 0.1.0
-* Licence: GPLv3
+- Author: Kiwamu Ishikura
+- Licence: GPLv3
 
 What's this?
 ------------
-This is a program to get hydrological data from Water Information System provided from Japanese Ministry of Land, Infrastructure, Transport and Tourism (http://www1.river.go.jp/). You can retrieve data and save as csv.
+This is a program to get hydrological data from `Water Information System`_ provided from Japanese Ministry of Land, Infrastructure, Transport and Tourism. You can retrieve data and, save as csv. *Only water level and flow rate data are available*, because this program is still in beta version.
 
-Requirement
------------
-Python (>= 3.3)
-*Beware that Python 2 can NOT work*
+.. _`Water Information System`: http://www1.river.go.jp/
+
+Requirements
+------------
+- Python (>= 2.7 or >= 3.3)
+- pandas (>= 0.18.0)
+
+
+Installation
+------------
+If you have pip, you can install by pip as below::
+
+    $ pip install jwis
+
+Or, you can install by setup.py::
+
+    $ python setup.py install
 
 Usage
 -----
-Download jwis, and you can type the followings on your console::
+Just type as below in your console::
 
-```
-$ python3 jwis.py
-```
+    $ jwis
 
-Program will ask you the beginning/final date of data you want, locations, and file name. Please follow the explanations.
-
-If you put jwislib.py in your PYTHONLIB and put jwis.py in your PATH, you can use these program anywhere.
+Program will ask you the beginning and final date you want, observatory ID (観測所記号), and file name. Please follow the explanations.
 """,
     **params
 )
