@@ -19,7 +19,7 @@ else:
 setup(
     name="jwis",
     packages=["jwis"],
-    version="0.2.0",
+    version="0.3.0",
     description="Data downloader from Japan Water System Information",
     author="Kiwamu Ishikura",
     author_email="ishikura.kiwamu@gmail.com",
