@@ -12,6 +12,7 @@ except ImportError:
     from urlparse import parse_qs
     from HTMLParser import HTMLParser
 
+
 class JWISParser(HTMLParser):
     def __init__(self):
         HTMLParser.__init__(self)

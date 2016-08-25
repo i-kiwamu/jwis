@@ -17,15 +17,15 @@ else:
 
 
 setup(
-    name = "jwis",
-    packages = ["jwis"],
-    version = "0.2.0",
-    description = "Data downloader from Japan Water System Information",
-    author = "Kiwamu Ishikura",
-    author_email = "ishikura.kiwamu@gmail.com",
-    url = "https://github.org/i-kiwamu/jwis",
-    keywords = ["download", "hydrology", "japan"],
-    classifiers = [
+    name="jwis",
+    packages=["jwis"],
+    version="0.2.0",
+    description="Data downloader from Japan Water System Information",
+    author="Kiwamu Ishikura",
+    author_email="ishikura.kiwamu@gmail.com",
+    url="https://github.org/i-kiwamu/jwis",
+    keywords=["download", "hydrology", "japan"],
+    classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.3",
@@ -41,7 +41,7 @@ setup(
         "Topic :: Scientific/Engineering",
         "Topic :: Utilities",
         ],
-    long_description = """\
+    long_description="""\
 =========================================================
 jwis: Data downloader from Japan Water Information System
 =========================================================
@@ -51,7 +51,10 @@ jwis: Data downloader from Japan Water Information System
 
 What's this?
 ------------
-This is a program to get hydrological data from `Water Information System`_ provided from Japanese Ministry of Land, Infrastructure, Transport and Tourism. You can retrieve data and, save as csv. *Only water level and flow rate data are available*, because this program is still in beta version.
+This is a program to get hydrological data from `Water Information System`_
+provided from Japanese Ministry of Land, Infrastructure, Transport and Tourism.
+You can retrieve data and, save as csv. *Only water level and flow rate data
+are available*, because this program is still in beta version.
 
 .. _`Water Information System`: http://www1.river.go.jp/
 
@@ -77,7 +80,8 @@ Just type as below in your console::
 
     $ jwis
 
-Program will ask you the beginning and final date you want, observatory ID (観測所記号), and file name. Please follow the explanations.
+Program will ask you the beginning and final date you want, observatory ID
+(観測所記号), and file name. Please follow the explanations.
 """,
     **params
 )

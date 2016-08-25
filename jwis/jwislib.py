@@ -14,13 +14,18 @@ import datetime
 import pandas as pd
 from .JWISHTMLParser import JWISParser
 
+
 class JWIS:
-    def __init__(self, obs_id, date_begin, date_end, kawabou):
-        self.view_url = "http://www1.river.go.jp/cgi-bin/DspWaterData.exe"
+    def __init__(self, obs_type, obs_id, date_begin, date_end, kawabou):
+        self.obs_type = obs_type
         self.obs_id = obs_id
         self.date_begin = date_begin
         self.date_end = date_end
         self.kawabou = kawabou
+        if obs_type == 1:
+            self.view_url = "http://www1.river.go.jp/cgi-bin/DspWaterData.exe"
+        elif obs_type == 2:
+            self.view_url = "http://www1.river.go.jp/cgi-bin/DspDamData.exe"
 
     def kind_name(self, kind):
         if kind == '1':
@@ -31,8 +36,18 @@ class JWIS:
             return 'X'
 
     def retrieve_data(self, kind):
-        kn = self.kind_name(kind)
-        columns = ["Date", "Time", kn, "Flag_" + kn]
+        columns = ["Date", "Time"]
+        if self.obs_type == 1:  # flow rate & height
+            kn = self.kind_name(kind)
+            columns.extend([kn, "Flag_" + kn])
+            n_comma = 3
+        elif self.obs_type == 2:  # dam
+            columns.extend([
+                "Ave. Precip. (mm/h)", "Flag_P", "Water storage (10^3 m3)",
+                "Flag_WS", "Input (m3/s)", "Flag_I", "Output (m3/s)", "Flag_O",
+                "Water storage (%)", "Flag_WSP"
+            ])
+            n_comma = 11
         data = pd.DataFrame(columns=columns)
 
         url_params_dict = {
@@ -60,7 +75,7 @@ class JWIS:
             data_file = urlopen(parser.data_url)
             for line in data_file:
                 line = line.decode("Shift_JIS")
-                if line.count(',') == 3 and not line.startswith('#'):
+                if line.count(',') == n_comma and not line.startswith('#'):
                     data_list.append(line.rstrip("\r\n").split(','))
 
             data = data.append(pd.DataFrame(data_list, columns=columns))

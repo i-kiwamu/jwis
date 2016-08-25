@@ -10,9 +10,10 @@ from .jwislib import JWIS
 sys_encoding = sys.stdout.encoding
 
 try:
-   input = raw_input
+    input = raw_input
 except NameError:
-   pass
+    pass
+
 
 def ask_date():
     print("Beginning date")
@@ -29,9 +30,19 @@ def ask_date():
 
     return (d_start, d_end)
 
+
+def ask_obs_type():
+    print("Choose type of observation")
+    print("  1: flow rate & height")
+    print("  2: dam")
+    obs_type = input("  Selection: ")
+    return int(obs_type)
+
+
 def ask_observatory():
-    obs_id = input("Type observatory ID: ")
+    obs_id = input("Input observatory ID: ")
     return obs_id
+
 
 def main():
     date_periods = ask_date()
@@ -40,10 +51,15 @@ def main():
     if d_start > d_end:
         d_start, d_end = d_end, d_start
 
+    obs_type = ask_obs_type()
     obs_id = ask_observatory()
 
     output_filename = input("saving file name? ")
-    jwis = JWIS(obs_id, d_start, d_end, "NO")
-    jwis_table = jwis.retrieve_hq_data()
+    jwis = JWIS(obs_type, obs_id, d_start, d_end, "NO")
+
+    if obs_type == 1:  # flow rate & height
+        jwis_table = jwis.retrieve_hq_data()
+    elif obs_type == 2:  # dam
+        jwis_table = jwis.retrieve_data('1')
     jwis_table.to_csv(output_filename)
     print("Done")
